@@ -1,19 +1,43 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
 
-
+  const {setUser , createUser , google} = useContext(AuthContext)
 
 
   const handleRegisterForm = e => {
     e.preventDefault()
 
     const form = new FormData(e.target)
-    const name = form.get("name")
+    // const name = form.get("name")
     const email = form.get("email")
     const password = form.get("password")
 
-    console.log(name ,email , password);
+    createUser(email , password)
+    .then(result => {
+      const user = result.user;
+      setUser(user)
+    })
+    .catch(err => {
+      console.log("Error creating user:", err);
+    })
+    
+  }
+
+  const handleGoogleLogin = e => {
+    e.preventDefault()
+
+    google()
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(err => {
+      console.log("ERROR" , err);
+    })
+
   }
 
 
@@ -77,6 +101,7 @@ const Register = () => {
         </button>
       </form>
       <button
+        onClick={handleGoogleLogin}
         className="mt-4 w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md shadow-sm text-sm font-medium"
       >
         Register with Google
