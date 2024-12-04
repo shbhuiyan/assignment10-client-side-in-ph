@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Signin = () => {
 
   const {setUser , oldUser , google} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const handleLoginForm = e => {
     e.preventDefault()
@@ -17,9 +19,13 @@ const Signin = () => {
     .then(result => {
       const user = result.user;
       setUser(user);
+      toast.success(`welcome back Mr.${user?.displayName || "Anonymous"}` , {position:"top-center"})
+      navigate('/')
     })
     .catch(err => {
-      console.log("ERROR" , err);
+      {
+        err ? toast.error("Please try again later" , {position:"top-center"}) : ""
+      }
     })
 
   }
@@ -32,9 +38,13 @@ const Signin = () => {
     .then(result => {
       const user = result.user;
       setUser(user);
+      toast.success("Successfully Login" , {position:"top-center"})
+      navigate('/')
     })
     .catch(err => {
-      console.log("ERROR" , err);
+      {
+        err ? toast.error("Please try again later" , {position:"top-center"}) : ""
+      }
     })
 
   }

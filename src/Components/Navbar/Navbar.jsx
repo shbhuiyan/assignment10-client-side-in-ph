@@ -3,6 +3,7 @@ import { FaUserLarge } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Profile from "../Profile/Profile";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -10,9 +11,11 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
     .then(() => {
-      alert("Log Out Successfully")
+      toast.warn("Log Out Successfully" , {position:"bottom-center"})
     }).catch(err => {
-      console.log(err);
+      {
+        err ? toast.error("Please try again later" , {position:"top-center"}) : ""
+      }
     })
   }
 

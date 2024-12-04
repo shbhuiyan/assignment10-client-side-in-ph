@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [passErr , setPassErr] = useState(false)
 
   const {setUser , createUser , google} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
 
@@ -29,10 +31,13 @@ const Register = () => {
     .then(result => {
       const user = result.user;
       setUser(user)
-      console.log(user);
+      toast.success("Congrats you create an account" , {position:"top-center"})
+      navigate('/')
     })
     .catch(err => {
-      console.log("Error creating user:", err);
+      {
+        err ? toast.error("This email already in use" , {position:"top-center"}) : ""
+      }
     })
     
   }
@@ -44,9 +49,13 @@ const Register = () => {
     .then(result => {
       const user = result.user;
       setUser(user);
+      toast.success("Successfully Login" , {position:"top-center"})
+      navigate('/')
     })
     .catch(err => {
-      console.log("ERROR" , err);
+      {
+        err ? toast.error("Please try again later" , {position:"top-center"}) : ""
+      }
     })
 
   }
