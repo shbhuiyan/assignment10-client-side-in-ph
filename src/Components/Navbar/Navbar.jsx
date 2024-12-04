@@ -1,3 +1,4 @@
+import { FaUserLarge } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 
 
@@ -11,8 +12,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
+        <div className="flex justify-between items-center bg-base-100 py-2">
               <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                   <svg
@@ -33,16 +33,36 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                   {Links}
                 </ul>
-              </div>
+
               <Link className="text-2xl md:text-3xl font-bold" to={'/'}><span className="text-white bg-black py-1 pl-3 pr-1 rounded-l-md">Sports</span><span className="text-black bg-amber-500 py-1 pr-3 pl-1 rounded-r-md">Hub</span></Link>
-            </div>
-            <div className="navbar-center hidden lg:flex">
+
+              </div>
+
+            <div className="hidden lg:flex">
               <ul className="menu menu-horizontal px-1 text-base font-medium">
                 {Links}
               </ul>
+              
             </div>
-            <div className="navbar-end">
-              <a className="btn">Button</a>
+            <div className="">
+
+              <div className="drawer drawer-end">
+                  <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+
+                    {/* Page content here */}
+                    <div className="p-2 border-2  rounded-badge">
+                    <label htmlFor="my-drawer-4" className="flex justify-end text-2xl hover:cursor-pointer"><FaUserLarge/></label>
+                    </div>
+
+                  <div className="drawer-side">
+                    <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                    <ul className="menu bg-base-200 text-base-content min-h-full w-40 md:w-80 p-4">
+                      {/* Sidebar content here */}
+                      <li><Link to={'/signin'} className="text-lg font-semibold bg-yellow-500 text-black">Login Now</Link></li>
+                    </ul>
+                  </div>
+              </div>
+
             </div>
         </div>
     );
