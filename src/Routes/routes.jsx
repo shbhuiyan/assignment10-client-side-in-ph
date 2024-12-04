@@ -6,6 +6,7 @@ import Add from "../Pages/Add";
 import MyList from "../Pages/MyList";
 import Signin from "../Pages/Auth/Signin";
 import Register from "../Pages/Auth/Register";
+import AuthPrivateRoute from "./AuthPrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -31,11 +32,11 @@ const router = createBrowserRouter([
             },
             {
                 path:'/signIn',
-                element:<Signin/>
+                element:<AuthPrivateRoute><Signin/></AuthPrivateRoute>
             },
             {
                 path:'/register',
-                element:<Register/>
+                element:<AuthPrivateRoute><Register/></AuthPrivateRoute>
             },
         ]
     }

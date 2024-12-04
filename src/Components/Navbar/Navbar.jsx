@@ -38,6 +38,7 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center bg-base-100 py-2">
+      <div className="">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
           <svg
@@ -61,8 +62,9 @@ const Navbar = () => {
         >
           {Links}
         </ul>
-
-        <Link className="text-2xl md:text-3xl font-bold" to={"/"}>
+        
+      </div>
+      <Link className="text-2xl md:text-3xl font-bold" to={"/"}>
           <span className="text-white bg-black py-1 pl-3 pr-1 rounded-l-md">
             Sports
           </span>
