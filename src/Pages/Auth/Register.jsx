@@ -1,24 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
+  const [passErr , setPassErr] = useState(false)
 
   const {setUser , createUser , google} = useContext(AuthContext)
+
+  const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
 
 
   const handleRegisterForm = e => {
     e.preventDefault()
 
+
     const form = new FormData(e.target)
-    // const name = form.get("name")
+    const name = form.get("name")
+    const photo = form.get("photo")
     const email = form.get("email")
     const password = form.get("password")
 
-    createUser(email , password)
+      if(!validPassword.test(password)){
+        setPassErr(true)
+        return
+      }
+
+    createUser(email , password , name , photo)
     .then(result => {
       const user = result.user;
       setUser(user)
+      console.log(user);
     })
     .catch(err => {
       console.log("Error creating user:", err);
@@ -32,7 +43,7 @@ const Register = () => {
     google()
     .then(result => {
       const user = result.user;
-      console.log(user);
+      setUser(user);
     })
     .catch(err => {
       console.log("ERROR" , err);
@@ -57,6 +68,22 @@ const Register = () => {
             id="name"
             name="name"
             placeholder="Enter your name"
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="photo"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Photo URL:
+          </label>
+          <input
+            type="text"
+            id="photo"
+            name="photo"
+            placeholder="photo URL"
             required
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           />
@@ -92,6 +119,7 @@ const Register = () => {
             required
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           />
+          <p className={`${passErr ? "text-red-600 text-sm p-1" : "hidden p-1 text-sm"}`}>Password must be at least 6 characters & A-Z & a-z & 0-9</p>
         </div>
         <button
           type="submit"

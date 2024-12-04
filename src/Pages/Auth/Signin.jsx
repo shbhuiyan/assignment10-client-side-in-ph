@@ -31,7 +31,7 @@ const Signin = () => {
     google()
     .then(result => {
       const user = result.user;
-      console.log(user);
+      setUser(user);
     })
     .catch(err => {
       console.log("ERROR" , err);
