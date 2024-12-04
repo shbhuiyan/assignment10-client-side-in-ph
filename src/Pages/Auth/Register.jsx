@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const Register = () => {
   const [passErr , setPassErr] = useState(false)
 
-  const {setUser , createUser , google} = useContext(AuthContext)
+  const {setUser , createUser , google , update} = useContext(AuthContext)
   const navigate = useNavigate()
 
   const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
@@ -31,6 +31,7 @@ const Register = () => {
     .then(result => {
       const user = result.user;
       setUser(user)
+      update(name , photo)
       toast.success("Congrats you create an account" , {position:"top-center"})
       navigate('/')
     })

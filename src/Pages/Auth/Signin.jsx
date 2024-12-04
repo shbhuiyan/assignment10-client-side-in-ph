@@ -24,7 +24,7 @@ const Signin = () => {
     })
     .catch(err => {
       {
-        err ? toast.error("Please try again later" , {position:"top-center"}) : ""
+        err ? toast.error("Please SignUp First" , {position:"top-center"}) : ""
       }
     })
 
