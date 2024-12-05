@@ -1,16 +1,13 @@
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import Banner from "../Components/Banner/Banner";
+
 
 
 const HomePage = () => {
 
-    const {user} = useContext(AuthContext)
 
     return (
         <div>
-            {
-                user?.email 
-            }
+            <Banner/>
         </div>
     );
 };
