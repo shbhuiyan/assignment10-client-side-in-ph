@@ -2,7 +2,10 @@
 const Categories = () => {
     return (
         <div>
-            <h1 className="text-2xl font-bold text-center">Categories</h1>
+            <div className="text-center">
+                <h1 className="text-3xl font-bold">Explore Our Top Categories</h1>
+                <p className="text-base font-semibold text-gray-600">Find exactly what you&#39;re looking for, faster</p>
+            </div>
         </div>
     );
 };
