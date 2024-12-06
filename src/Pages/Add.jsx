@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Add = () => {
 
@@ -24,8 +25,24 @@ const Add = () => {
 
       const newProduct = {userEmail , userName , photo , itemName , category , description , price , rating , customize , processing , stock};
 
-      console.log(newProduct);
-
+      fetch('http://localhost:5000/products' , {
+        method:'POST',
+        headers:{
+          "content-type": "application/json"
+        },
+        body:JSON.stringify(newProduct)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.insertedId){
+          Swal.fire({
+            title: "Good job!",
+            text: "Successfully added your product",
+            icon: "success"
+          });
+        }
+      })
+      e.target.reset();
     }
 
 
@@ -42,6 +59,7 @@ const Add = () => {
               type="text"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter photo URL"
+              required
             />
           </div>
   
@@ -53,6 +71,7 @@ const Add = () => {
               type="text"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter item name"
+              required
             />
           </div>
   
@@ -64,6 +83,7 @@ const Add = () => {
               type="text"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter category name"
+              required
             />
           </div>
   
@@ -74,6 +94,7 @@ const Add = () => {
               name="description"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter product description"
+              required
               rows="4"
             ></textarea>
           </div>
@@ -86,6 +107,7 @@ const Add = () => {
               type="number"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter price"
+              required
             />
           </div>
   
@@ -100,6 +122,7 @@ const Add = () => {
               min="0"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter rating (0-5)"
+              required
             />
           </div>
   
@@ -111,6 +134,7 @@ const Add = () => {
               type="text"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter customization details"
+              required
             />
           </div>
   
@@ -119,9 +143,10 @@ const Add = () => {
             <label className="block text-gray-700 font-medium mb-2">Processing Time (days)</label>
             <input
               name="processing"
-              type="number"
+              type="text"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter delivery time"
+              required
             />
           </div>
   
@@ -133,6 +158,7 @@ const Add = () => {
               type="number"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter available product quantity"
+              required
             />
           </div>
   
