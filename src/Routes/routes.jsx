@@ -7,6 +7,9 @@ import MyList from "../Pages/MyList";
 import Signin from "../Pages/Auth/Signin";
 import Register from "../Pages/Auth/Register";
 import AuthPrivateRoute from "./AuthPrivateRoute";
+import OurProducts from "../Components/OurProducts/OurProducts";
+import AllProducts from "../Components/HomeLayeout/AllProducts";
+import RenderByCategory from "../Components/HomeLayeout/RenderByCategory";
 
 
 const router = createBrowserRouter([
@@ -17,7 +20,25 @@ const router = createBrowserRouter([
             {
                 path:'/',
                 element:<HomePage/>,
-                loader:() => fetch('http://localhost:5000/products')
+                children:[
+                    {
+                        path:'/',
+                        element:<OurProducts/>,
+                        loader:()=> fetch('http://localhost:5000/products'),
+                        children:[
+                            {
+                                path:'/',
+                                element:<AllProducts/>,
+                                loader:()=> fetch('http://localhost:5000/products'),
+                            },
+                            {
+                                path:'/:category',
+                                element:<RenderByCategory/>,
+                                loader:()=> fetch('http://localhost:5000/products'),
+                            },
+                        ]
+                    }
+                ]
             },
             {
                 path:'/equipments',
