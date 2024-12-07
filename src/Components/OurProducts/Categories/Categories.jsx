@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { NavLink, useLoaderData } from "react-router-dom";
 
 const Categories = () => {
@@ -8,7 +7,7 @@ const Categories = () => {
 
 
     return (
-        <div>
+        <div id="category">
             <div className="text-center space-y-4">
                 <h1 className="text-3xl font-bold">Explore Our Top Categories</h1>
                 <p className="text-base font-semibold text-gray-600">Find exactly what you&#39;re looking for, faster</p>
