@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root";
-// import ErrorPage from "../Pages/ErrorPage";
+import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
 import AllEquipments from "../Pages/AllEquipments";
 import Add from "../Pages/Add";
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     {
         path:'/',
         element:<Root/>,
-        // errorElement:<ErrorPage/>,
+        errorElement:<ErrorPage/>,
         children:[
             {
                 path:'/',
@@ -32,10 +32,10 @@ const router = createBrowserRouter([
                             {
                                 path:'/',
                                 element:<AllProducts/>,
-                                loader:()=> fetch('http://localhost:5000/products'),
+                                loader:()=> fetch('http://localhost:5000/products?limit=6'),
                             },
                             {
-                                path:'/:category',
+                                path:'/category/:category',
                                 element:<RenderByCategory/>,
                                 loader:()=> fetch('http://localhost:5000/products'),
                             },
@@ -59,7 +59,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/myList',
-                element:<MyList/>
+                element:<MyList/>,
+                loader:()=> fetch('http://localhost:5000/products'),
             },
             {
                 path:'/signIn',
