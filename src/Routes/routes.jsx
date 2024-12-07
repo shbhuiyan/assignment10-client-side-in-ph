@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root";
+// import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
 import AllEquipments from "../Pages/AllEquipments";
 import Add from "../Pages/Add";
@@ -10,12 +11,14 @@ import AuthPrivateRoute from "./AuthPrivateRoute";
 import OurProducts from "../Components/OurProducts/OurProducts";
 import AllProducts from "../Components/HomeLayeout/AllProducts";
 import RenderByCategory from "../Components/HomeLayeout/RenderByCategory";
+import ViewDetails from "../Pages/ViewDetails";
 
 
 const router = createBrowserRouter([
     {
-        path:"/",
+        path:'/',
         element:<Root/>,
+        // errorElement:<ErrorPage/>,
         children:[
             {
                 path:'/',
@@ -41,8 +44,14 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path:'/details/:id',
+                element:<ViewDetails/>,
+                loader:()=> fetch('http://localhost:5000/products'),
+            },
+            {
                 path:'/equipments',
-                element:<AllEquipments/>
+                element:<AllEquipments/>,
+                loader:()=> fetch('http://localhost:5000/products'),
             },
             {
                 path:'/add',
@@ -61,6 +70,7 @@ const router = createBrowserRouter([
                 element:<AuthPrivateRoute><Register/></AuthPrivateRoute>
             },
         ]
+        
     }
 ])
 

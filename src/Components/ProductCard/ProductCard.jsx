@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
 
 
 
-    const {photo , itemName , category , price , rating , stock} = product;
+    const {photo , itemName , category , price , rating , stock , _id} = product;
 
     
     return (
@@ -24,7 +26,7 @@ const ProductCard = ({ product }) => {
                         <p className="font-medium"><span className="text-lg font-bold">Price : $</span>{price}</p>
                     </div>
                     <div className="card-actions justify-end">
-                      <button className="btn btn-info">View Details</button>
+                      <Link to={`/details/${_id}`} className="btn btn-info">View Details</Link>
                     </div>
                   </div>
                 </div>

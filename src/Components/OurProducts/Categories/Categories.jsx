@@ -12,7 +12,7 @@ const Categories = () => {
                 <h1 className="text-3xl font-bold">Explore Our Top Categories</h1>
                 <p className="text-base font-semibold text-gray-600">Find exactly what you&#39;re looking for, faster</p>
             </div>
-            <div className="flex justify-center gap-20 my-10">
+            <div className="flex max-sm:flex-col items-center justify-center gap-10  md:gap-20 my-10">
                 {
                     categories.map((category , i) => <div key={i}>
                         <NavLink to={`/${category}`} className="capitalize text-2xl font-bold btn">{category}</NavLink>
