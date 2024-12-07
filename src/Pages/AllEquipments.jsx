@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
+import Loader from "../Components/Loader/Loader";
 
 const AllEquipments = () => {
 
@@ -21,64 +22,68 @@ const AllEquipments = () => {
                 </tr>
               </thead>
               <tbody>
-                {allProducts.map((item) => (
-                  <tr key={item.id} className="border-t hover:bg-gray-50">
-                    <td>
-                      <img
-                        className="w-16 h-16 border-2 rounded-lg"
-                        src={item.photo}
-                        alt=""
-                      />
-                    </td>
-                    <td className="px-6 py-4 text-gray-700">{item.itemName}</td>
-                    <td className="px-6 py-4 text-gray-700">{item.category}</td>
-                    <td className="px-6 py-4 text-gray-700">{item.stock} P</td>
-                    <td className="px-6 py-4 text-gray-700">{item.price} $</td>
-                    <td className="px-6 py-4">
-                      <Link
-                        to={`/details/${item._id}`}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded"
-                      >
-                        View Details
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
+                {
+                    allProducts.length <= 0 ? <Loader/> : allProducts.map((item) => (
+                        <tr key={item._id} className="border-t hover:bg-gray-50">
+                          <td>
+                            <img
+                              className="w-16 h-16 border-2 rounded-lg"
+                              src={item.photo}
+                              alt=""
+                            />
+                          </td>
+                          <td className="px-6 py-4 text-gray-700">{item.itemName}</td>
+                          <td className="px-6 py-4 text-gray-700">{item.category}</td>
+                          <td className="px-6 py-4 text-gray-700">{item.stock} P</td>
+                          <td className="px-6 py-4 text-gray-700">{item.price} $</td>
+                          <td className="px-6 py-4">
+                            <Link
+                              to={`/details/${item._id}`}
+                              className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded"
+                            >
+                              View Details
+                            </Link>
+                          </td>
+                        </tr>
+                      ))
+                }
               </tbody>
             </table>
             
             {/* Mobile View */}
             <div className="block sm:hidden space-y-4">
-              {allProducts.map((item) => (
-                <div
-                  key={item.id}
-                  className="border border-gray-200 rounded-lg p-4 shadow-sm"
-                >
-                  <div className="flex space-x-4">
-                    <img
-                      className="w-16 h-16 border-2 rounded-lg"
-                      src={item.photo}
-                      alt={item.itemName}
-                    />
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-800">
-                        {item.itemName}
-                      </h3>
-                      <p className="text-sm text-gray-600">Category: {item.category}</p>
-                      <p className="text-sm text-gray-600">In Stock: {item.stock} P</p>
-                      <p className="text-sm text-gray-600">Price: {item.price} $</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 text-right">
-                    <Link
-                      to={`/details/${item._id}`}
-                      className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded"
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                {
+                    allProducts.length <= 0 ? <Loader/> : allProducts.map((item) => (
+                        <div
+                          key={item._id}
+                          className="border border-gray-200 rounded-lg p-4 shadow-sm"
+                        >
+                          <div className="flex space-x-4">
+                            <img
+                              className="w-16 h-16 border-2 rounded-lg"
+                              src={item.photo}
+                              alt={item.itemName}
+                            />
+                            <div>
+                              <h3 className="text-lg font-bold text-gray-800">
+                                {item.itemName}
+                              </h3>
+                              <p className="text-sm text-gray-600">Category: {item.category}</p>
+                              <p className="text-sm text-gray-600">In Stock: {item.stock} P</p>
+                              <p className="text-sm text-gray-600">Price: {item.price} $</p>
+                            </div>
+                          </div>
+                          <div className="mt-4 text-right">
+                            <Link
+                              to={`/details/${item._id}`}
+                              className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded"
+                            >
+                              View Details
+                            </Link>
+                          </div>
+                        </div>
+                      ))
+                }
             </div>
           </div>
         </div>

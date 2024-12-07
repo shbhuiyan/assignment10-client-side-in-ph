@@ -12,6 +12,7 @@ import OurProducts from "../Components/OurProducts/OurProducts";
 import AllProducts from "../Components/HomeLayeout/AllProducts";
 import RenderByCategory from "../Components/HomeLayeout/RenderByCategory";
 import ViewDetails from "../Pages/ViewDetails";
+import UpdateProduct from "../Pages/UpdateProduct";
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
                             {
                                 path:'/',
                                 element:<AllProducts/>,
-                                loader:()=> fetch('http://localhost:5000/products?limit=6'),
+                                loader:()=> fetch('http://localhost:5000/products?limit=true'),
                             },
                             {
                                 path:'/category/:category',
@@ -58,9 +59,12 @@ const router = createBrowserRouter([
                 element:<Add/>
             },
             {
+                path:'/update',
+                element:<UpdateProduct/>
+            },
+            {
                 path:'/myList',
                 element:<MyList/>,
-                loader:()=> fetch('http://localhost:5000/products'),
             },
             {
                 path:'/signIn',

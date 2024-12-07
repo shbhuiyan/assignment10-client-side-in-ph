@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import Loader from "../Components/Loader/Loader";
 
 const ViewDetails = () => {
     const [productDetails , setProductDetails] = useState([])
-
+console.log(productDetails);
     const {id} = useParams()
     const allProducts = useLoaderData()
 
@@ -16,7 +17,9 @@ const ViewDetails = () => {
     const {photo , itemName , description , category , rating , stock , price} = productDetails
 
     return (
-        <div className="card image-full max-w-4xl p-4 border-2 mx-auto shadow-xl my-10">
+        <>
+            {
+                !productDetails ? <Loader/> : <div className="card image-full max-w-4xl p-4 border-2 mx-auto shadow-xl my-10">
         <figure>
           <img className="w-full p-4" src={photo} alt={itemName} />
         </figure>
@@ -35,7 +38,9 @@ const ViewDetails = () => {
                     </div>
           </div>
           </div>
-          </div>
+          </div> 
+            }
+        </>
     );
 };
 
