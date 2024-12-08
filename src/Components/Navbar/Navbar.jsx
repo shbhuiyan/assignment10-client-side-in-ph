@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut , setDarkTheme , darkTheme} = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
@@ -80,7 +80,8 @@ const Navbar = () => {
           {Links}
         </ul>
       </div>
-      <div className="z-50">
+      <div className="z-50 flex justify-center items-center gap-6">
+      <input type="checkbox" className="toggle" data-tooltip-id="user-tooltip" data-tooltip-place="bottom" data-tooltip-variant="info" data-tooltip-content={`${darkTheme ? "Light" : "Dark"}`} onClick={()=>setDarkTheme(!darkTheme)} />
         <div className="drawer drawer-end">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
 
@@ -120,7 +121,7 @@ const Navbar = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu bg-base-200 text-base-content min-h-full w-40 md:w-80 p-4 z-50">
+            <ul className={`${darkTheme ? "dark-theme menu text-base-content min-h-full w-40 md:w-80 p-4 z-50" : "menu bg-base-200 text-base-content min-h-full w-40 md:w-80 p-4 z-50"}`}>
               {/* Sidebar content here */}
               {
                 user && user?.email ? <div className="">

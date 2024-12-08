@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useContext } from "react";
 AOS.init();
 
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const ProductCard = ({ product }) => {
 
-
+  const {darkTheme} = useContext(AuthContext)
 
     const {photo , itemName , category , price , rating , stock , _id} = product;
 
@@ -15,7 +17,7 @@ const ProductCard = ({ product }) => {
     return (
         <div data-aos="flip-left" data-aos-easing="ease-out-cubic"
         data-aos-duration="2000" className="p-4 border rounded-xl">
-                <div className="card bg-base-100 shadow-xl border">
+                <div className={`${darkTheme ? "dark-theme card shadow-xl border" : "card bg-base-100 shadow-xl border"}`}>
                   <figure className="h-96">
                     <img
                       src={photo}

@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { FaGithub, FaLinkedin, FaSquareFacebook, FaXTwitter } from "react-icons/fa6";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Footer = () => {
+
+  const {darkTheme} = useContext(AuthContext)
+
     return (
         <footer> 
-            <div className="flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 bg-base-100 border-t-2 rounded-lg">
+            <div className={`${darkTheme ? "dark-theme flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 rounded-lg" : "flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 bg-base-100 border-t-2 rounded-lg"}`}>
                 <div className="text-2xl md:text-3xl font-bold">
                   <span className="text-white bg-black py-1 pl-3 pr-1 rounded-l-md">
                     Sports

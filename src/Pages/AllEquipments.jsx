@@ -1,10 +1,12 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Loader from "../Components/Loader/Loader";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AllEquipments = () => {
   const [showProduct, setShowProduct] = useState([]);
   const allProducts = useLoaderData();
+  const {darkTheme} = useContext(AuthContext)
 
   useEffect(() => {
     setShowProduct(allProducts.map((product) => product));
@@ -27,7 +29,7 @@ const AllEquipments = () => {
         </button>
       </div>
       <div className="overflow-x-auto">
-        <table className="hidden sm:table min-w-full bg-white border border-gray-200 rounded-lg">
+        <table className={`${darkTheme ? "dark-theme hidden sm:table min-w-full bg-white border border-gray-200 rounded-lg" : "hidden sm:table min-w-full bg-white border border-gray-200 rounded-lg"}`}>
           <thead>
             <tr className="bg-gray-100">
               <th className="text-left px-6 py-4 font-semibold text-lg text-gray-800">
