@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Profile from "../Profile/Profile";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -88,7 +89,10 @@ const Navbar = () => {
             {/* Page content here */}
             <label
               htmlFor="my-drawer-4"
-              title={
+              data-tooltip-id="user-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-variant="info"
+              data-tooltip-content={
                 user && user?.email
                   ? `${user?.displayName || "Set name"}`
                   : "Please Log in"
@@ -107,6 +111,7 @@ const Navbar = () => {
                 </div>
               )}
             </label>
+            <Tooltip id="user-tooltip" />
           </div>
 
           <div className="drawer-side">

@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loader from "../Components/Loader/Loader";
-import { Link } from "react-router-dom";
+import { data, Link } from "react-router-dom";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { GrDocumentUpdate } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 const MyList = () => {
 
@@ -18,7 +19,36 @@ const MyList = () => {
         })
     },[user?.email])
 
+    const handleProductDelete = (id) => {
 
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5000/product/${id}` , {
+            method:'DELETE'
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(data.deletedCount > 0){
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your product has been deleted.",
+                icon: "success"
+          });
+          setProducts(products.filter(product => product._id !== id))
+            }
+          })
+        }
+      });
+
+    }
 
 
     return (
@@ -45,7 +75,7 @@ const MyList = () => {
                           </div>
                             <div className="flex flex-col gap-2">
                             <Link to={`/update/${item._id}`} className="btn btn-accent">Update <GrDocumentUpdate className="text-lg"/></Link>
-                            <Link className="btn btn-error">Delete <MdOutlineDeleteForever className="text-xl"/></Link>
+                            <Link className="btn btn-error" onClick={() => handleProductDelete (item._id)}>Delete <MdOutlineDeleteForever className="text-xl"/></Link>
                             </div>
                         </div>
                         </div>

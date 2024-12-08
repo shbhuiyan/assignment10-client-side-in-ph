@@ -1,4 +1,4 @@
-import { data, Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Loader from "../Components/Loader/Loader";
 import { useEffect, useState } from "react";
 
