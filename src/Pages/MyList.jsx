@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { GrDocumentUpdate } from "react-icons/gr";
 import Swal from "sweetalert2";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const MyList = () => {
 
@@ -55,7 +58,7 @@ const MyList = () => {
             <div className="max-w-5xl mx-auto my-16 space-y-4">
                 {
                     products.length <= 0 ? <Loader/> : products.map((item) => (
-                        <div key={item._id} className="p-2 border-2 rounded-lg">
+                        <div data-aos="fade-up" data-aos-duration="1500" key={item._id} className="p-2 border-2 rounded-lg">
                             <div
                           className="border border-gray-200 rounded-lg p-4 shadow-sm flex justify-between items-center backdrop-blur-md"
                         >
