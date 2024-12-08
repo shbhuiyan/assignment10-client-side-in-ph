@@ -36,7 +36,7 @@ const Add = () => {
       .then(data => {
         if(data.insertedId){
           Swal.fire({
-            title: "Good job!",
+            title: "Congrats!",
             text: "Successfully added your product",
             icon: "success"
           });

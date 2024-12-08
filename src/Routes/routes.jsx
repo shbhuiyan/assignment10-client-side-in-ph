@@ -7,12 +7,12 @@ import Add from "../Pages/Add";
 import MyList from "../Pages/MyList";
 import Signin from "../Pages/Auth/Signin";
 import Register from "../Pages/Auth/Register";
-import AuthPrivateRoute from "./AuthPrivateRoute";
 import OurProducts from "../Components/OurProducts/OurProducts";
 import AllProducts from "../Components/HomeLayeout/AllProducts";
 import RenderByCategory from "../Components/HomeLayeout/RenderByCategory";
 import ViewDetails from "../Pages/ViewDetails";
 import UpdateProduct from "../Pages/UpdateProduct";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/details/:id',
-                element:<ViewDetails/>,
+                element:<PrivateRoute><ViewDetails/></PrivateRoute>,
                 loader:()=> fetch('http://localhost:5000/products'),
             },
             {
@@ -56,23 +56,24 @@ const router = createBrowserRouter([
             },
             {
                 path:'/add',
-                element:<Add/>
+                element:<PrivateRoute><Add/></PrivateRoute>
             },
             {
-                path:'/update',
-                element:<UpdateProduct/>
+                path:'/update/:id',
+                element:<PrivateRoute><UpdateProduct/></PrivateRoute>,
+                loader:({params})=> fetch(`http://localhost:5000/product/${params.id}`),
             },
             {
                 path:'/myList',
-                element:<MyList/>,
+                element:<PrivateRoute><MyList/></PrivateRoute>,
             },
             {
                 path:'/signIn',
-                element:<AuthPrivateRoute><Signin/></AuthPrivateRoute>
+                element:<Signin/>
             },
             {
                 path:'/register',
-                element:<AuthPrivateRoute><Register/></AuthPrivateRoute>
+                element:<Register/>
             },
         ]
         

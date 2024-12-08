@@ -4,7 +4,7 @@ import Loader from "../Components/Loader/Loader";
 
 const ViewDetails = () => {
     const [productDetails , setProductDetails] = useState([])
-console.log(productDetails);
+
     const {id} = useParams()
     const allProducts = useLoaderData()
 

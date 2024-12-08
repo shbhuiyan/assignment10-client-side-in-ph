@@ -1,10 +1,17 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
 
-    
+    // const {id} = useParams()
+    const product = useLoaderData()
     const {user} = useContext(AuthContext)
+
+
+    const {_id} = product
+
 
     const handleProductUpdate = e => {
       e.preventDefault()
@@ -23,8 +30,24 @@ const UpdateProduct = () => {
       const stock = form.get('stock')
 
       const newProduct = {userEmail , userName , photo , itemName , category , description , price , rating , customize , processing , stock};
-
-     
+      
+      fetch(`http://localhost:5000/product/${_id}` , {
+        method:'PUT',
+        headers:{
+          "content-type": "application/json"
+        },
+        body:JSON.stringify(newProduct)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.modifiedCount > 0){
+          Swal.fire({
+            title: "Good job!",
+            text: "Successfully Updated",
+            icon: "success"
+          });
+        }
+      })
       e.target.reset();
     }
 

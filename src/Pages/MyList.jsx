@@ -44,7 +44,7 @@ const MyList = () => {
                             </div>
                           </div>
                             <div className="flex flex-col gap-2">
-                            <Link to={'/update'} className="btn btn-accent">Update <GrDocumentUpdate className="text-lg"/></Link>
+                            <Link to={`/update/${item._id}`} className="btn btn-accent">Update <GrDocumentUpdate className="text-lg"/></Link>
                             <Link className="btn btn-error">Delete <MdOutlineDeleteForever className="text-xl"/></Link>
                             </div>
                         </div>
