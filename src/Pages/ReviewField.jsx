@@ -18,7 +18,7 @@ const ReviewField = () => {
         const newReview = { userEmail , userName , photo , review }
         console.log(newReview);
 
-        fetch('http://localhost:5000/products' , {
+        fetch('http://localhost:5000/usersReview' , {
             method:'POST',
             headers:{
               "content-type": "application/json"
