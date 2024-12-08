@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaSquareFacebook, FaXTwitter } from "react-icons/
 const Footer = () => {
     return (
         <footer> 
-            <div className="flex flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 bg-base-100 border-t-2 rounded-lg">
+            <div className="flex mt-20 flex-col md:flex-row max-md:gap-20 justify-between items-center p-32 lg:p-40 bg-base-100 border-t-2 rounded-lg">
                 <div className="text-2xl md:text-3xl font-bold">
                   <span className="text-white bg-black py-1 pl-3 pr-1 rounded-l-md">
                     Sports

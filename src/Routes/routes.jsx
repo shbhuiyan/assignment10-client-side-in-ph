@@ -15,75 +15,104 @@ import UpdateProduct from "../Pages/UpdateProduct";
 import PrivateRoute from "./PrivateRoute";
 import ReviewField from "../Pages/ReviewField";
 
-
 const router = createBrowserRouter([
-    {
-        path:'/',
-        element:<Root/>,
-        errorElement:<ErrorPage/>,
-        children:[
-            {
-                path:'/',
-                element:<HomePage/>,
-                loader:()=> fetch('http://localhost:5000/usersReview'),
-                children:[
-                    {
-                        path:'/',
-                        element:<OurProducts/>,
-                        loader:()=> fetch('http://localhost:5000/products'),
-                        children:[
-                            {
-                                path:'/',
-                                element:<AllProducts/>,
-                                loader:()=> fetch('http://localhost:5000/products?limit=true'),
-                            },
-                            {
-                                path:'/category/:category',
-                                element:<RenderByCategory/>,
-                                loader:()=> fetch('http://localhost:5000/products'),
-                            },
-                        ]
-                    }
-                ]
-            },
-            {
-                path:'/details/:id',
-                element:<PrivateRoute><ViewDetails/></PrivateRoute>,
-                loader:()=> fetch('http://localhost:5000/products'),
-            },
-            {
-                path:'/equipments',
-                element:<AllEquipments/>,
-                loader:()=> fetch('http://localhost:5000/products'),
-            },
-            {
-                path:'/add',
-                element:<PrivateRoute><Add/></PrivateRoute>
-            },
-            {
-                path:'/update/:id',
-                element:<PrivateRoute><UpdateProduct/></PrivateRoute>,
-                loader:({params})=> fetch(`http://localhost:5000/product/${params.id}`),
-            },
-            {
-                path:'/myList',
-                element:<PrivateRoute><MyList/></PrivateRoute>,
-            },
-            {
-                path:'/signIn',
-                element:<Signin/>
-            },
-            {
-                path:'/register',
-                element:<Register/>
-            },
-            {
-                path:'/review',
-                element:<PrivateRoute><ReviewField/></PrivateRoute>
-            },
-        ]
-        
-    }
-])
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+        loader: () =>
+          fetch("https://sports-hub-server-side.vercel.app/usersReview"),
+        children: [
+          {
+            path: "/",
+            element: <OurProducts />,
+            loader: () =>
+              fetch("https://sports-hub-server-side.vercel.app/products"),
+            children: [
+              {
+                path: "/",
+                element: <AllProducts />,
+                loader: () =>
+                  fetch(
+                    "https://sports-hub-server-side.vercel.app/products?limit=true"
+                  ),
+              },
+              {
+                path: "/category/:category",
+                element: <RenderByCategory />,
+                loader: () =>
+                  fetch("https://sports-hub-server-side.vercel.app/products"),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails />
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch("https://sports-hub-server-side.vercel.app/products"),
+      },
+      {
+        path: "/equipments",
+        element: <AllEquipments />,
+        loader: () =>
+          fetch("https://sports-hub-server-side.vercel.app/products"),
+      },
+      {
+        path: "/add",
+        element: (
+          <PrivateRoute>
+            <Add />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateProduct />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://sports-hub-server-side.vercel.app/product/${params.id}`
+          ),
+      },
+      {
+        path: "/myList",
+        element: (
+          <PrivateRoute>
+            <MyList />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/signIn",
+        element: <Signin />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/review",
+        element: (
+          <PrivateRoute>
+            <ReviewField />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 export default router;
