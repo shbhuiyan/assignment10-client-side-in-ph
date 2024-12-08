@@ -13,6 +13,7 @@ import RenderByCategory from "../Components/HomeLayeout/RenderByCategory";
 import ViewDetails from "../Pages/ViewDetails";
 import UpdateProduct from "../Pages/UpdateProduct";
 import PrivateRoute from "./PrivateRoute";
+import ReviewField from "../Pages/ReviewField";
 
 
 const router = createBrowserRouter([
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
             {
                 path:'/register',
                 element:<Register/>
+            },
+            {
+                path:'/review',
+                element:<PrivateRoute><ReviewField/></PrivateRoute>
             },
         ]
         
