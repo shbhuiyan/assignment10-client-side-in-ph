@@ -15,7 +15,6 @@ const ReviewField = () => {
     const photo = form.get("photo");
 
     const newReview = { userEmail, userName, photo, review };
-    console.log(newReview);
 
     fetch("https://sports-hub-server-side.vercel.app/usersReview", {
       method: "POST",
