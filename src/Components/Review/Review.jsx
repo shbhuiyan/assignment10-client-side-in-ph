@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 
 const Review = () => {
@@ -10,7 +10,7 @@ const Review = () => {
     const usersReview = useLoaderData()
 
   return (
-    <div className="my-20 space-y-10">
+    <div className="my-20 space-y-10 text-center">
       <h1 className="text-4xl font-bold text-center"><span className="border-b-2 pb-3 border-blue-600">Our Customers Review</span></h1>
 
       {/* Review Card */}
@@ -41,6 +41,9 @@ const Review = () => {
         {/* Pagination */}
         <div className="custom-pagination mt-6 flex justify-center space-x-4"></div>
       </div>
+      <Link to={'/review'} data-tooltip-id="user-tooltip"
+              data-tooltip-place="top"
+              data-tooltip-variant="info" data-tooltip-content={"Click this button to drop your review"} className="btn btn-neutral w-1/3 text-lg">Give Us Your Feedback</Link>
     </div>
   );
 };
