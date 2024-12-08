@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Loader from "../Components/Loader/Loader";
-import { data, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { GrDocumentUpdate } from "react-icons/gr";
 import Swal from "sweetalert2";
