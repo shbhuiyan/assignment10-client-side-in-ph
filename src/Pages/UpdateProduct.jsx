@@ -10,7 +10,7 @@ const UpdateProduct = () => {
     const {user} = useContext(AuthContext)
 
 
-    const {_id} = product
+    const {_id , photo , itemName , description , category , rating , stock , price , customize , processing} = product
 
 
     const handleProductUpdate = e => {
@@ -29,7 +29,7 @@ const UpdateProduct = () => {
       const processing = form.get('processing')
       const stock = form.get('stock')
 
-      const newProduct = {userEmail , userName , photo , itemName , category , description , price , rating , customize , processing , stock};
+      const newProduct = {userEmail , userName , photo , itemName , category , description , price , rating , customize , processing , stock };
       
       fetch(`http://localhost:5000/product/${_id}` , {
         method:'PUT',
@@ -63,6 +63,7 @@ const UpdateProduct = () => {
             <input
               name="photo"
               type="text"
+              defaultValue={`${photo}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter photo URL"
               required
@@ -75,6 +76,7 @@ const UpdateProduct = () => {
             <input
               name="itemName"
               type="text"
+              defaultValue={`${itemName}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter item name"
               required
@@ -87,6 +89,7 @@ const UpdateProduct = () => {
             <input
               name="category"
               type="text"
+              defaultValue={`${category}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter category name"
               required
@@ -98,6 +101,7 @@ const UpdateProduct = () => {
             <label className="block text-gray-700 font-medium mb-2">Description</label>
             <textarea
               name="description"
+              defaultValue={`${description}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter product description"
               required
@@ -111,6 +115,7 @@ const UpdateProduct = () => {
             <input
               name="price"
               type="number"
+              defaultValue={`${price}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter price"
               required
@@ -123,6 +128,7 @@ const UpdateProduct = () => {
             <input
               name="rating"
               type="number"
+              defaultValue={`${rating}`}
               step="0.1"
               max="5"
               min="0"
@@ -138,6 +144,7 @@ const UpdateProduct = () => {
             <input
               name="customize"
               type="text"
+              defaultValue={`${customize}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter customization details"
               required
@@ -150,6 +157,7 @@ const UpdateProduct = () => {
             <input
               name="processing"
               type="text"
+              defaultValue={`${processing}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter delivery time"
               required
@@ -162,6 +170,7 @@ const UpdateProduct = () => {
             <input
               name="stock"
               type="number"
+              defaultValue={`${stock}`}
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter available product quantity"
               required

@@ -1,14 +1,30 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { data, Link, useLoaderData } from "react-router-dom";
 import Loader from "../Components/Loader/Loader";
+import { useEffect, useState } from "react";
 
 const AllEquipments = () => {
 
+    const [showProduct , setShowProduct] = useState([])
     const allProducts = useLoaderData()
 
+    useEffect(() => {
+      setShowProduct(allProducts.map(product => product))
+    },[allProducts])
+
+    const handleSortBtn = () => {
+      fetch('http://localhost:5000/products?sort=true')
+      .then(res => res.json())
+      .then(data => {
+        setShowProduct(data);
+      })
+    } 
 
     return (
         <div className="container mx-auto p-6">
-          <h2 className="text-2xl font-bold mb-6">Sports Equipment</h2>
+          <div className="flex justify-between items-center my-6 px-6">
+          <h2 className="text-2xl font-bold">Sports Equipment</h2>
+          <button onClick={handleSortBtn} className="btn btn-neutral text-lg">Sort by Price</button>
+          </div>
           <div className="overflow-x-auto">
             <table className="hidden sm:table min-w-full bg-white border border-gray-200 rounded-lg">
               <thead>
@@ -23,7 +39,7 @@ const AllEquipments = () => {
               </thead>
               <tbody>
                 {
-                    allProducts.length <= 0 ? <Loader/> : allProducts.map((item) => (
+                    allProducts.length <= 0 ? <Loader/> : showProduct.map((item) => (
                         <tr key={item._id} className="border-t hover:bg-gray-50">
                           <td>
                             <img
@@ -53,7 +69,7 @@ const AllEquipments = () => {
             {/* Mobile View */}
             <div className="block sm:hidden space-y-4">
                 {
-                    allProducts.length <= 0 ? <Loader/> : allProducts.map((item) => (
+                    allProducts.length <= 0 ? <Loader/> : showProduct.map((item) => (
                         <div
                           key={item._id}
                           className="border border-gray-200 rounded-lg p-4 shadow-sm"
