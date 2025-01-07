@@ -9,7 +9,7 @@ const Root = () => {
     const {darkTheme} = useContext(AuthContext)
 
     return (
-        <div className={`${darkTheme ? "dark-theme container md:w-11/12 mx-auto" : "container md:w-11/12 mx-auto"}`}>
+        <div className={`${darkTheme ? "dark-theme container md:w-11/12 mx-auto relative" : "relative container md:w-11/12 mx-auto"}`}>
             <Navbar/>
             <Outlet/>
             <Footer/>

@@ -11,7 +11,7 @@ const Review = () => {
 
   return (
     <div className="my-20 space-y-10 text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-center"><span className="border-b-2 pb-3 border-blue-600">Our Customers Review</span></h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-center"><span className="border-b-2 pb-3 px-6 border-blue-600">Our Customers Review</span></h1>
 
       {/* Review Card */}
       <div className="max-w-4xl mx-auto p-4">

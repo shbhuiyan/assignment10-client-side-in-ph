@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaUserLarge } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -7,7 +7,21 @@ import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
+  const [navColor , setNavColor] = useState(false)
   const { user, logOut , setDarkTheme , darkTheme} = useContext(AuthContext);
+
+  const  handleNavColor = () => {
+    window.scrollY > 50 ? setNavColor(true) : setNavColor(false)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll',handleNavColor)
+
+    return () => {
+      window.removeEventListener('scroll',handleNavColor)
+    }
+  },[])
+
 
   const handleLogOut = () => {
     logOut()
@@ -22,23 +36,43 @@ const Navbar = () => {
 
   const Links = (
     <>
-      <li>
-        <NavLink to={"/"}>Home</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/equipments"}>All Equipments</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/add"}>Add Equipment </NavLink>
-      </li>
-      <li>
-        <NavLink to={"/myList"}>My List</NavLink>
-      </li>
+      {
+        user?.email ? 
+        <>
+          <li>
+            <NavLink to={"/"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/equipments"}>All Equipments</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/add"}>Add Equipment </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/myList"}>My List</NavLink>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+        </>
+        :
+        <>
+          <li>
+            <NavLink to={"/"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/equipments"}>All Equipments</NavLink>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+        </>
+      }
     </>
   );
 
   return (
-    <div className="flex justify-between items-center py-2 px-4">
+    <div className={navColor ? "flex justify-between items-center py-2 px-4 sticky top-2 rounded-xl backdrop-blur-3xl border z-50 bg-blue-500/20" : "flex justify-between items-center py-2 px-4 sticky top-0 rounded-xl backdrop-blur-3xl border border-transparent z-50"}>
       <div className="">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

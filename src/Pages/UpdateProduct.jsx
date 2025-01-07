@@ -7,7 +7,7 @@ const UpdateProduct = () => {
   // const {id} = useParams()
   const product = useLoaderData();
   const { user } = useContext(AuthContext);
-
+// console.log(product);
   const {
     _id,
     photo,

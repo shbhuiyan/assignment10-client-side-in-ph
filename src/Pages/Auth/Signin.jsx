@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Signin = () => {
 
@@ -21,6 +22,9 @@ const Signin = () => {
       const user = result.user;
       setUser(user);
       toast.success(`welcome back Mr.${user?.displayName || "Anonymous"}` , {position:"top-center"});
+      const userEmail = {email: email}
+      axios.post('http://localhost:5000/jwt' , userEmail , {withCredentials:true})
+      .then(({data}) => console.log(data))
       navigate(location?.state ? location.state : '/');
     })
     .catch(err => {

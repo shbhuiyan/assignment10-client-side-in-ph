@@ -14,6 +14,7 @@ import ViewDetails from "../Pages/ViewDetails";
 import UpdateProduct from "../Pages/UpdateProduct";
 import PrivateRoute from "./PrivateRoute";
 import ReviewField from "../Pages/ReviewField";
+import About from "../Pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -53,11 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: (
-          <PrivateRoute>
-            <ViewDetails />
-          </PrivateRoute>
-        ),
+        element: <ViewDetails />,
         loader: () =>
           fetch("https://sports-hub-server-side.vercel.app/products"),
       },
@@ -66,6 +63,10 @@ const router = createBrowserRouter([
         element: <AllEquipments />,
         loader: () =>
           fetch("https://sports-hub-server-side.vercel.app/products"),
+      },
+      {
+        path: "/about",
+        element: <About />
       },
       {
         path: "/add",

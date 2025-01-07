@@ -12,7 +12,6 @@ const OurProducts = () => {
             </div>
             <Categories/>
             <Outlet/>
-           
         </div>
     );
 };

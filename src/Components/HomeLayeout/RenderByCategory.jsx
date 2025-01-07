@@ -19,7 +19,7 @@ const RenderByCategory = () => {
     return (
         <>
             {
-                showProduct.length < 0 ? <NoDataFound/> : <div  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                showProduct.length < 0 ? <NoDataFound/> : <div  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
                 {
                     showProduct.map(product => <ProductCard key={product._id} product={product} />)

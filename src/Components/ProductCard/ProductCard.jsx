@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
                     <div className="grid grid-cols-2 gap-4 py-4 border-y-2 border-dashed my-2">
                         <p className="font-medium"><span className="text-lg font-bold">category : </span>{category}</p>
                         <p className="font-medium"><span className="text-lg font-bold">rating : </span>{rating}</p>
-                        <p className="font-medium"><span className="text-lg font-bold">Available : </span>{stock} P</p>
+                        <p className="font-medium"><span className="text-lg font-bold">Available : </span>{stock}</p>
                         <p className="font-medium"><span className="text-lg font-bold">Price : $</span>{price}</p>
                     </div>
                     <div className="card-actions justify-end">
