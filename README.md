@@ -14,6 +14,14 @@
 - ### swiper slider
 - ### and many more...
 
+# Technologies
+- ### Tailwind
+- ### React Js
+- ### Express JS
+- ### MongoDB
+- ### Node Js
+- ### Axios
+
 # dependencies
 - ### @emotion/react: ^11.13.5,
 - ### aos: ^2.3.4,
